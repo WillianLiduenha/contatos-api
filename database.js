@@ -9,14 +9,14 @@ const pool = new Pool({
     host: 'ec2-52-1-115-6.compute-1.amazonaws.com',
     database: 'dflpmqmgd4cb7',
     port: 5432,
-    ssl:{rejectUnauthorized:false}
+    ssl:{rejectUnauthorized:false},
 });
 
 
 const script = `
     CREATE TABLE IF NOT EXISTS contatos(
 
-        ID serial primary KeyboardEvent,
+        ID serial primary key,
         nome varchar(60) not null,
         telefone varchar(20) not null
     )
