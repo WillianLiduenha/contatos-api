@@ -9,19 +9,16 @@ server.use(express.json());
 
 contatos = [];
 
-server.get('/', function (request, response) {
 
+// localhost:3000/
+server.get('/', function (request, response) {
     response.json(contatos);
-
-
 })
-
-server.get('/', function (request, response) {
-
+// localhost:3000/1234-1234-1233-2134
+server.get('/:id', function (request, response) {
     const id = request.params.id;
-    response.json(id);
-
-
+    const result = contatos.filter(contato => contato.id == id);
+    response.json(result);
 })
 
 
