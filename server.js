@@ -16,12 +16,18 @@ server.get('/', async function (request, response) {
 })
 // localhost:3000/1234-1234-1233-2134
 
-// server.get('/:id', function (request, response) {
-//     const id = request.params.id;
-//     const result = contatos.filter(contato => contato.id == id);
-//     response.json(result);
-// })
+server.get('/:id', async function (request, response) {
 
+    const id = request.params.id;
+    const contato = await database.find(id);
+    response.json(contato);
+})
+server.get('/delete:id', async function (request, response) {
+
+    const id = request.params.id;
+    const contato = await database.delete(id);
+    response.json(contato);
+})
 
 server.post('/', async function (request, response) {
 
@@ -29,6 +35,19 @@ server.post('/', async function (request, response) {
     const telefone = request.body.telefone;
 
     const result = await database.create(nome, telefone);
+
+
+    response.status(201).send();
+
+})
+
+server.post('/', async function (request, response) {
+
+    const id = request.body.id;
+    const nome = request.body.nome;
+    const telefone = request.body.telefone;
+
+    const result = await database.update(id,nome, telefone);
 
 
     response.status(201).send();
