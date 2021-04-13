@@ -22,7 +22,7 @@ server.get('/:id', async function (request, response) {
     const contato = await database.find(id);
     response.json(contato);
 })
-server.get('/delete:id', async function (request, response) {
+server.get('/delete/:id', async function (request, response) {
 
     const id = request.params.id;
     const contato = await database.delete(id);
