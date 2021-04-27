@@ -22,10 +22,10 @@ server.get('/:id', async function (request, response) {
     const contato = await database.find(id);
     response.json(contato);
 })
-server.post('/delete', async function (request, response) {
+server.delete('/:id', async function (request, response) {
 
-    const id = request.body.id;
-    const contato = await database.delete(id);
+    const id = request.params.id;
+   await database.delete(id);
     response.status(201).send();
 })
 
@@ -41,16 +41,16 @@ server.post('/', async function (request, response) {
 
 })
 
-server.post('/update', async function (request, response) {
+server.put('/:id', async function (request, response) {
 
-    const id = request.body.id;
+    const id = request.params.id;
     const nome = request.body.nome;
     const telefone = request.body.telefone;
 
     const result = await database.update(id,nome, telefone);
 
 
-    response.status(201).send();
+    response.status(200).send();
 
 })
 
