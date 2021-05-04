@@ -1,9 +1,10 @@
 const express = require('express'); //import express; using express;
 const server = express(); // o servidor está pronto, estaremos apenas reecrevendo os métodos
-
+const cors = require('cors')
 const database = require('./database');
 
 // middleware
+server.use(cors());
 server.use(express.json());
 
 
